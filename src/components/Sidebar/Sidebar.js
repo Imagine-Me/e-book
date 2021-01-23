@@ -5,9 +5,8 @@ import style from './Sidebar.module.css'
 
 
 const Sidebar = ({ links }) => {
-    console.log(Array.isArray(links));
     return (<div className={style.Sidebar}>
-        {links.map((link,index) => <Link key={index}>{link}</Link>)}
+        {links.map((link, index) => <Link key={index} index={index}>{link}</Link>)}
     </div>)
 }
 

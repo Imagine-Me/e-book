@@ -1,8 +1,9 @@
 .Sidebar{
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 56px;
     top: 0;
     width: 260px;
     background-color: rgba(128, 128, 128, 0.178);
+    overflow-y: auto;
 }

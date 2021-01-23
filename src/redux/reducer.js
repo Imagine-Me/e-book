@@ -2,7 +2,7 @@ const initialState = {
     data: [{
         id: 1,
         title: "This is the title",
-        text: "Hello there"
+        text: "<h1>Hello there</h1>"
     }]
 }
 

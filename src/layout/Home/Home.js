@@ -16,8 +16,9 @@ const Home = ({ length }) => {
     const history = useHistory()
     useEffect(() => {
         if (length > 0)
-            history.push('0')
+            history.push('/0')
     }, [])
+
 
     return (
         <>
@@ -27,7 +28,7 @@ const Home = ({ length }) => {
                     <Switch>
                         <Route path="/" exact component={InitialLayout} />
                         <Route path="/create" exact component={EditLayout} />
-                        <Route path="/edit/:id" exact component={EditLayout} />
+                        <Route path="/:id/edit" exact component={EditLayout} />
                         <Route path="/:id" exact component={ViewLayout} />
                     </Switch>
                 </Suspense>

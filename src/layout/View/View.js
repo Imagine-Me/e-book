@@ -7,23 +7,25 @@ import { BiEdit } from 'react-icons/bi'
 import { Link } from "react-router-dom"
 
 
-const View = ({ data }) => {
-    return <div className={classes.Padding}>
+const View = ({ data, id }) => {
+    return data ? <div className={classes.Padding}>
         <h2 className="text-center">
             {data.title}
-            <BiEdit className="ml-2" />
+            <Link to={`/edit/${id}`} >
+                <BiEdit className="ml-2" />
+            </Link>
         </h2>
         <div className="mt-3">
             {parse(data.text)}
         </div>
         <Link to="/create">Create new</Link>
-    </div>
+    </div> : ''
 }
 
 const mapStateToProps = (state, props) => {
     const id = parseInt(props.match.params.id)
     const data = state.data[id]
-    return { data }
+    return { data, id }
 }
 
 

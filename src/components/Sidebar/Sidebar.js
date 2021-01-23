@@ -1,13 +1,12 @@
-import Link from './Links/Link'
+import NavLink from './NavLinks/NavLink'
 
 import { connect } from 'react-redux'
 import style from './Sidebar.module.css'
 
 
 const Sidebar = ({ links }) => {
-    console.log(Array.isArray(links));
     return (<div className={style.Sidebar}>
-        {links.map((link,index) => <Link key={index}>{link}</Link>)}
+        {links.map((link, index) => <NavLink key={index} index={index}>{link}</NavLink>)}
     </div>)
 }
 

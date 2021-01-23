@@ -2,20 +2,31 @@ import { useState } from 'react'
 
 import { Form, Button } from "react-bootstrap"
 
-import { EditorState } from 'draft-js'
+import { ContentState, EditorState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg';
 
+import { connect } from 'react-redux'
+
+import { saveBook, updateBook } from '../../redux/actions'
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { convertToHTML } from 'draft-convert';
+import { convertToHTML, convertFromHTML } from 'draft-convert';
 
-const Edit = () => {
-    const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
-    const [pageTitle, setPageTitle] = useState('')
+const Edit = ({ saveBook, updateBook, title, text, isUpdate, id }) => {
+    const [editorState, setEditorState] = useState(() => EditorState.createWithContent(convertFromHTML(text)))
+    const [pageTitle, setPageTitle] = useState(title)
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        console.log(convertToHTML(editorState.getCurrentContent()));
+        const eBook = {}
+        eBook.title = pageTitle
+        eBook.text = convertToHTML(editorState.getCurrentContent())
+        if (isUpdate) {
+            eBook.id = id
+            updateBook(eBook)
+        } else {
+            saveBook(eBook)
+        }
     }
 
 
@@ -40,4 +51,23 @@ const Edit = () => {
     </div>
 }
 
-export default Edit
+
+const mapStateToProps = (state, props) => {
+    let data = {
+        title: '',
+        content: '',
+        isUpdate: false
+    }
+    if (/edit/.test(props.location.pathname)) {
+        const id = props.match.params.id
+        if (id) {
+            data = state.data[id]
+            data.isUpdate = true
+            data.id = id
+        }
+    }
+
+    return data
+}
+
+export default connect(mapStateToProps, { saveBook, updateBook })(Edit)

@@ -8,6 +8,7 @@ import classes from './Home.module.css'
 import { connect } from 'react-redux'
 import Footer from '../../components/Footer/Footer'
 
+const InitialLayout = lazy(() => import('../InitialView/InitialView'))
 const ViewLayout = lazy(() => import('../View/View'))
 const EditLayout = lazy(() => import('../Edit/Edit'))
 
@@ -24,7 +25,9 @@ const Home = ({ length }) => {
             <div className={classes.Body}>
                 <Suspense fallback={<h1>Loading</h1>}>
                     <Switch>
+                        <Route path="/" exact component={InitialLayout} />
                         <Route path="/create" exact component={EditLayout} />
+                        <Route path="/edit/:id" exact component={EditLayout} />
                         <Route path="/:id" exact component={ViewLayout} />
                     </Switch>
                 </Suspense>

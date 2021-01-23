@@ -7,6 +7,7 @@ import { Switch, Route, useHistory } from 'react-router'
 import classes from './Home.module.css'
 import { connect } from 'react-redux'
 import Footer from '../../components/Footer/Footer'
+import Spinner from '../../components/Spinner/Spinner'
 
 const InitialLayout = lazy(() => import('../InitialView/InitialView'))
 const ViewLayout = lazy(() => import('../View/View'))
@@ -24,7 +25,7 @@ const Home = ({ length }) => {
         <>
             <Sidebar />
             <div className={classes.Body}>
-                <Suspense fallback={<h1>Loading</h1>}>
+                <Suspense fallback={<Spinner />}>
                     <Switch>
                         <Route path="/" exact component={InitialLayout} />
                         <Route path="/create" exact component={EditLayout} />

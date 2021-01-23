@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import Home from './layout/Home/Home'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -13,7 +12,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <App /> */}
       <BrowserRouter>
         <Home />
       </BrowserRouter>

@@ -10,7 +10,7 @@ To start the server
 To build for production
 >npm build
 
-To see live version click [here](https://600c4eccee05c50007a0b9b8--e-book-app.netlify.app/)
+To see live version click [here](https://e-book-app.netlify.app/)
 
 ## Folders
 #### Components

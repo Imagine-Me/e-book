@@ -31,6 +31,7 @@ export default function (state = initialState, action) {
                 text: action.payload.text
             }
             prevData.splice(bookId, 1, updatedBook)
+            localStorage.setItem(STORAGE_ID, JSON.stringify(prevData))
             return {
                 ...state,
                 data: prevData

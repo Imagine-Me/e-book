@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Form, Button } from "react-bootstrap"
 import { connect } from 'react-redux'
 
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { saveBook, updateBook } from '../../redux/actions'
 
 import ReactQuill from 'react-quill'
@@ -38,16 +38,19 @@ const Edit = ({ saveBook, updateBook, title, text, isUpdate, id, total }) => {
             </div>
             <Form.Label>Page Title</Form.Label>
             <Form.Control type="text" placeholder="Page Title" onChange={(event) => setPageTitle(event.target.value)} value={pageTitle} required />
-            <div className="editor-wrapped">
+            <div className="mt-3">
                 <ReactQuill
                     theme="snow"
                     value={richContent}
                     onChange={setRichContent}
                 />
             </div>
-            <Button variant="primary" type="submit">Submit</Button>
+            <div className="mt-3">
+                <Link className="btn btn-primary float-right text-uppercase" to={`/${id ?? total > 0 ? '0' : ''}`}>Back to book</Link>
+                <Button className="float-right mr-2 text-uppercase" variant="info" type="submit">Save Page</Button>
+            </div>
         </form>
-    </div>
+    </div >
 }
 
 

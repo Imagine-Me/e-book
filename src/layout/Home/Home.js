@@ -18,6 +18,7 @@ const Home = ({ length }) => {
     useEffect(() => {
         if (length > 0)
             history.push('/0')
+        // eslint-disable-next-line
     }, [])
 
 

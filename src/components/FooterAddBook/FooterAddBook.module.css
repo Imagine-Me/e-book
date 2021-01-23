@@ -3,8 +3,13 @@
     bottom: 70px;
     right: 15px;
     text-decoration: none;
-    color: grey;
+    color: rgb(56, 56, 56);
+    padding: 7px 15px;
+    border: 1px solid transparent;
+    border-radius: 5px;
 }
 .Button:hover{
     text-decoration: none;
+    color: rgb(56, 56, 56);
+    border-color: rgb(56, 56, 56);
 }

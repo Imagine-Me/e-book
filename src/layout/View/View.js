@@ -12,8 +12,8 @@ const View = ({ data, id }) => {
     return data ? <div className={classes.Padding}>
         <h2 className="text-center">
             {data.title}
-            <Link to={`/${id}/edit`} >
-                <BiEdit className="ml-2" />
+            <Link to={`/${id}/edit`} className="text-dark">
+                <BiEdit className="ml-3" size=".7em" />
             </Link>
         </h2>
         <div className="mt-3">

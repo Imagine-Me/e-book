@@ -1,20 +1,17 @@
 import { useState } from 'react'
 
 import { Form, Button } from "react-bootstrap"
-
-import { EditorState } from 'draft-js'
-import { Editor } from 'react-draft-wysiwyg';
-
 import { connect } from 'react-redux'
 
 import { useHistory } from 'react-router-dom'
 import { saveBook, updateBook } from '../../redux/actions'
 
-import { convertToHTML, convertFromHTML } from 'draft-convert';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css';
+
 
 const Edit = ({ saveBook, updateBook, title, text, isUpdate, id, total }) => {
-    const [editorState, setEditorState] = useState(() => EditorState.createWithContent(convertFromHTML(text)))
+    const [richContent, setRichContent] = useState(text)
     const [pageTitle, setPageTitle] = useState(title)
 
     const history = useHistory()
@@ -23,11 +20,11 @@ const Edit = ({ saveBook, updateBook, title, text, isUpdate, id, total }) => {
         event.preventDefault()
         const eBook = {}
         eBook.title = pageTitle
-        eBook.text = convertToHTML(editorState.getCurrentContent())
+        eBook.text = richContent
         if (isUpdate) {
             eBook.id = id
             updateBook(eBook)
-            history.push(id)
+            history.push(`/${id}`)
         } else {
             saveBook(eBook)
             history.push(`/${total}`)
@@ -42,13 +39,10 @@ const Edit = ({ saveBook, updateBook, title, text, isUpdate, id, total }) => {
             <Form.Label>Page Title</Form.Label>
             <Form.Control type="text" placeholder="Page Title" onChange={(event) => setPageTitle(event.target.value)} value={pageTitle} required />
             <div className="editor-wrapped">
-                <Editor
-                    editorStyle={{ height: '240px', padding: '0 15px' }}
-                    editorState={editorState}
-                    onEditorStateChange={setEditorState}
-                    wrapperClassName="wrapper-class"
-                    editorClassName="editor-class"
-                    toolbarClassName="toolbar-class"
+                <ReactQuill
+                    theme="snow"
+                    value={richContent}
+                    onChange={setRichContent}
                 />
             </div>
             <Button variant="primary" type="submit">Submit</Button>

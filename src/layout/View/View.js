@@ -5,6 +5,7 @@ import classes from './View.module.css'
 
 import { BiEdit } from 'react-icons/bi'
 import { Link } from "react-router-dom"
+import FooterAddBook from '../../components/FooterAddBook/FooterAddBook'
 
 
 const View = ({ data, id }) => {
@@ -18,7 +19,7 @@ const View = ({ data, id }) => {
         <div className="mt-3">
             {parse(data.text)}
         </div>
-        <Link to="/create">Create new</Link>
+        <FooterAddBook/>
     </div> : ''
 }
 

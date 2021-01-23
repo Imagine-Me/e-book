@@ -4,6 +4,7 @@ import parse from 'html-react-parser'
 import classes from './View.module.css'
 
 import { BiEdit } from 'react-icons/bi'
+import { Link } from "react-router-dom"
 
 
 const View = ({ data }) => {
@@ -15,6 +16,7 @@ const View = ({ data }) => {
         <div className="mt-3">
             {parse(data.text)}
         </div>
+        <Link to="/create">Create new</Link>
     </div>
 }
 

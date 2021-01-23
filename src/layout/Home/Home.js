@@ -6,8 +6,10 @@ import { Switch, Route, useHistory } from 'react-router'
 
 import classes from './Home.module.css'
 import { connect } from 'react-redux'
+import Footer from '../../components/Footer/Footer'
 
 const ViewLayout = lazy(() => import('../View/View'))
+const EditLayout = lazy(() => import('../Edit/Edit'))
 
 const Home = ({ length }) => {
     const history = useHistory()
@@ -22,10 +24,12 @@ const Home = ({ length }) => {
             <div className={classes.Body}>
                 <Suspense fallback={<h1>Loading</h1>}>
                     <Switch>
+                        <Route path="/create" exact component={EditLayout} />
                         <Route path="/:id" exact component={ViewLayout} />
                     </Switch>
                 </Suspense>
             </div>
+            <Footer />
         </>
     );
 }
